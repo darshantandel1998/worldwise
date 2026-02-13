@@ -1,0 +1,27 @@
+.pageNotFound {
+  margin: 2.5rem;
+  padding: 2.5rem 5rem;
+  background-color: var(--color-dark--1);
+  min-height: calc(100vh - 5rem);
+}
+
+.pageNotFound section {
+  transform: translateY(50%);
+  text-align: center;
+}
+
+.pageNotFound h2 {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 3rem;
+}
+
+.pageNotFound p {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.pageNotFound a {
+  all: unset;
+  cursor: pointer;
+}
