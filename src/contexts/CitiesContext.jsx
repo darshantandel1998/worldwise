@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-const BASE_URL = "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const CitiesContext = createContext();
 
@@ -51,7 +51,7 @@ export function CitiesContextProvider({ children }) {
     async function fetchCities() {
       disaptch({ type: "loading" });
       try {
-        const res = await fetch(`${BASE_URL}/cities`);
+        const res = await fetch(`${API_BASE_URL}/cities`);
         const data = await res.json();
         disaptch({ type: "cities/loaded", payload: data });
       } catch {
@@ -68,7 +68,7 @@ export function CitiesContextProvider({ children }) {
     if (id == currentCity.id) return;
     disaptch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
+      const res = await fetch(`${API_BASE_URL}/cities/${id}`);
       const data = await res.json();
       disaptch({ type: "city/loaded", payload: data });
     } catch {
@@ -82,7 +82,7 @@ export function CitiesContextProvider({ children }) {
   async function createCity(city) {
     disaptch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/cities`, {
+      const res = await fetch(`${API_BASE_URL}/cities`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(city),
@@ -100,7 +100,7 @@ export function CitiesContextProvider({ children }) {
   async function deleteCity(id) {
     disaptch({ type: "loading" });
     try {
-      await fetch(`${BASE_URL}/cities/${id}`, {
+      await fetch(`${API_BASE_URL}/cities/${id}`, {
         method: "DELETE",
       });
       disaptch({ type: "city/deleted", payload: id });
