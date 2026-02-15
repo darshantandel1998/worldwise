@@ -7,7 +7,8 @@ function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuthContext();
 
   useEffect(() => {
-    if (!isAuthenticated) navigate("/login");
+    if (!isAuthenticated && localStorage.getItem("worldwise") !== "1")
+      navigate("/login");
   }, [isAuthenticated, navigate]);
 
   return isAuthenticated ? children : null;
